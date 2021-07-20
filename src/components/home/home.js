@@ -8,22 +8,31 @@ class Home extends Component {
         this.state = {
             details: [],
         }
-        const x = new XMLHttpRequest();
-        x.open('GET', 'https://jsonplaceholder.typicode.com/users');
-        x.send();
-        x.addEventListener('load', () => {
-            const data = JSON.parse(x.responseText);
+    }
+
+    async fetchData() {
+        try {
+            const res = await window.fetch('https://jsonplaceholder.typicode.com/users');
+            const data = await res.json();
+            console.log(data)
             this.setState({
                 details: data,
             })
-            console.log(this.state.details);
-        });
+        } catch (error) {
+            console.error(error);
+        }
+      
     }
+
+    componentDidMount() {
+       this.fetchData();
+    }
+
 
     render() {
         return (
             <div className="table-responsive">
-                <table className="table table-striped table-bordered">
+                <table className="table table-primary table-striped table-bordered">
                     <thead>
                         <tr>
                             <th scope="col">#</th>
@@ -37,7 +46,7 @@ class Home extends Component {
                     <tbody>
                         {
                            this.state.details.map(x => (
-                                <tr>
+                                <tr key={x.id}>
                                     <th scope="row">{x.id}</th>
                                     <td>{x.name}</td>
                                     <td>{x.email}</td>
