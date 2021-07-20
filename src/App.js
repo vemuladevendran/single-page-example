@@ -1,8 +1,9 @@
 import './App.css';
-import { BrowserRouter, Route, Switch } from 'react-router-dom'
-import Login from './components/login/login'
-import Signup from './components/signup/signup'
-import Navbar from './components/navbar/navbar'
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import Login from './components/login/login';
+import Signup from './components/signup/signup';
+import Home from './components/home/home';
+import Navbar from './components/navbar/navbar';
 function App() {
   return (
     <BrowserRouter>
@@ -14,6 +15,10 @@ function App() {
 
         <Route path='/signup'>
           <Signup></Signup>
+        </Route>
+
+        <Route exact path='/home'>
+          <Home></Home>
         </Route>
       </Switch>
     </BrowserRouter>

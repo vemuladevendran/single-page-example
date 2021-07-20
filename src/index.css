@@ -22,6 +22,7 @@ code {
 
 
 .active-nav-item {
-  color: red;
+  color: red !important;
+  background-color: white;
 }
 
